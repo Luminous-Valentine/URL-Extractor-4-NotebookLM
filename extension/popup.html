@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Extractor</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>URL Extractor</h1>
+      <p class="subtitle">note / YouTube から NotebookLM 用ソースを一括抽出</p>
+    </div>
+    <button id="scan-button" class="primary">再スキャン</button>
+  </header>
+
+  <section class="controls">
+    <div class="control">
+      <label for="limit">最大取得数</label>
+      <select id="limit">
+        <option value="50">50 件</option>
+        <option value="300">300 件</option>
+      </select>
+    </div>
+    <div class="control">
+      <label for="engagement-unit">勢いの単位</label>
+      <select id="engagement-unit">
+        <option value="minute">minute</option>
+        <option value="hour">hour</option>
+        <option value="day">day</option>
+      </select>
+    </div>
+    <div class="control">
+      <label for="sort">並び替え</label>
+      <select id="sort">
+        <option value="engagement">エンゲージメント（勢い）</option>
+        <option value="publish">投稿日が新しい順</option>
+        <option value="count">いいね / 視聴回数が多い順</option>
+        <option value="order">表示順（元ページの順番）</option>
+      </select>
+    </div>
+    <div class="control checkbox">
+      <input type="checkbox" id="exclude-shorts" checked>
+      <label for="exclude-shorts">YouTubeショートを自動除外</label>
+    </div>
+  </section>
+
+  <section class="actions">
+    <button id="select-all">すべて選択</button>
+    <button id="select-none">選択解除</button>
+    <span id="status" role="status">未スキャン</span>
+  </section>
+
+  <section class="results">
+    <div id="result-stats">0 件</div>
+    <ul id="result-list"></ul>
+  </section>
+
+  <section class="exports">
+    <button id="copy-selected" class="primary">コピー（選択URL）</button>
+    <button id="download-txt">txt ダウンロード</button>
+    <button id="download-csv">csv ダウンロード</button>
+  </section>
+
+  <template id="result-item-template">
+    <li class="result-item">
+      <div class="item-header">
+        <div>
+          <label>
+            <input type="checkbox" class="item-select" checked>
+            <span class="item-title"></span>
+          </label>
+          <div class="item-url"></div>
+        </div>
+        <div class="item-meta">
+          <span class="badge source"></span>
+          <span class="badge paid" hidden>有料</span>
+        </div>
+      </div>
+      <div class="item-details"></div>
+    </li>
+  </template>
+
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
