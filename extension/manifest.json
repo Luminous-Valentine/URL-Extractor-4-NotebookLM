@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "URL Extractor for NotebookLM",
+  "description": "Extract note.com and YouTube URLs, ranks, and engagement for rapid NotebookLM ingestion.",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "URL Extractor for NotebookLM",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "scripting",
+    "tabs",
+    "clipboardWrite"
+  ],
+  "host_permissions": [
+    "https://note.com/*",
+    "https://www.youtube.com/*",
+    "https://youtube.com/*"
+  ]
+}
